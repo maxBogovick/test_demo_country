@@ -33,7 +33,7 @@ public class DemoApplicationTests2 {
         cityEntity.setDescription("marvelous city2");
         cityEntity.setCapital(0);
 
-        System.out.println();
+     //   System.out.println();
     }
 
 }
