@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "COUNTRIES")
-public class CountryEntity {
+public class CountryEntity extends CommonInfoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_country")
@@ -30,32 +30,12 @@ public class CountryEntity {
     @Column(name = "SQUARE")
     private double square;
 
-    @Column(name = "POPULATION")
-    private Integer population;
 
-    @Column(name = "DESCRIPTION")
-    private String description;
 
     @Transient
     private Date createDate;
 
     public CountryEntity() {
-    }
-
-    public Integer getPopulation() {
-        return population;
-    }
-
-    public void setPopulation(Integer population) {
-        this.population = population;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Integer getId() {

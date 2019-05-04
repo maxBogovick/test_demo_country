@@ -40,6 +40,7 @@ public class CountryDaoImpl implements CountryDao {
     @Override
     public Optional<CountryEntity> findById(int id) {
         final CountryEntity countryEntity = entityManager.find(CountryEntity.class, id);
+        //entityManager.detach(countryEntity);
         if (Objects.isNull(countryEntity)) throw new RuntimeException("country not found");
         return Optional.ofNullable(countryEntity);
     }

@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import com.example.demo.model.CityEntity;
 import com.example.demo.model.CountryEntity;
+import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 
@@ -31,7 +32,13 @@ public class CityDaoImp implements CityDao{
     }
 
     @Override
-    public Collection<CityEntity> finAll() {
+    public void delete(final CityEntity entity) {
+        if (Objects.isNull(entity)) throw new IllegalArgumentException("entity must be a set");
+        entityManager.remove(entity);
+    }
+
+    @Override
+    public Collection<CityEntity> findAll() {
         //HQL
         Collection<CityEntity> cityEntities =
                 entityManager.createQuery("select c from CityEntity c").getResultList();
@@ -39,7 +46,7 @@ public class CityDaoImp implements CityDao{
     }
 
     @Override
-    public Optional<CityEntity> findById(int id) {
+    public Optional<CityEntity> findById(Integer id) {
         final CityEntity cityEntity=
                 entityManager.find(CityEntity.class,id);
         if(Objects.isNull(cityEntity)) throw  new RuntimeException("city not found");

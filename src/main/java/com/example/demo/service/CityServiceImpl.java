@@ -24,7 +24,7 @@ public class CityServiceImpl implements CityService {
     @Override
     @Transactional
     public Collection<CityEntity> findAll() {
-        return cityDao.finAll();
+        return cityDao.findAll();
     }
 
     @Override

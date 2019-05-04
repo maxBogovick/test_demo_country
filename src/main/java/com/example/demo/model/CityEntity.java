@@ -7,13 +7,13 @@ import java.util.Date;
 
 @Entity
 @Table(name = "CITY")
-public class CityEntity {
+public class CityEntity extends CommonInfoEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_city")
     @SequenceGenerator(name = "seq_city", sequenceName = "seq_city", allocationSize = 1)
     private Integer id;
 
-    @Column(name = "NAME", nullable = false, insertable = true, updatable = true)
+    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, unique = true)
     private String name;
 
     @Enumerated(EnumType.STRING)
@@ -24,30 +24,17 @@ public class CityEntity {
     @Temporal(TemporalType.DATE)
     private Date foundationDate;
 
-    @Column(name = "DESCRIPTION")
-    private String description;
-
     @Column(name = "SQUARE")
     private double square;
 
     @Column(name = "CAPITAL")
     private int capital;
 
-    @Column(name = "POPULATION")
-    private int population;
 
     @Transient
     private Date createDate;
 
     public CityEntity() {
-    }
-
-    public int getPopulation() {
-        return population;
-    }
-
-    public void setPopulation(int population) {
-        this.population = population;
     }
 
     public Integer getId() {
@@ -80,14 +67,6 @@ public class CityEntity {
 
     public void setFoundationDate(Date foundationDate) {
         this.foundationDate = foundationDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public double getSquare() {

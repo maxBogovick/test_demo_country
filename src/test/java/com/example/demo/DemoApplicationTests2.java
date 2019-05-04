@@ -32,7 +32,8 @@ public class DemoApplicationTests2 {
         cityEntity.setFoundationDate(date);
         cityEntity.setDescription("marvelous city2");
         cityEntity.setCapital(0);
-
+        //countryService.createOrUpdate(countryEntity);//
+        cityService.createOrUpdate(cityEntity);
      //   System.out.println();
     }
 

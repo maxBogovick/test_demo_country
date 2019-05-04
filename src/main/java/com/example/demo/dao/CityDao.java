@@ -6,8 +6,6 @@ import com.example.demo.model.CountryEntity;
 import java.util.Collection;
 import java.util.Optional;
 
-public interface CityDao {
-    void save(CityEntity city);
-        Collection<CityEntity> finAll();
-    Optional<CityEntity> findById(int id);
+public interface CityDao extends GenericDao<CityEntity, Integer> {
+
 }

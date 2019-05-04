@@ -4,8 +4,8 @@ import com.example.demo.dao.CountryDao;
 import com.example.demo.model.CountryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -22,14 +22,19 @@ public class CountryServiceImpl implements CountryService{
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Collection<CountryEntity> findAll() {
         return countryDao.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public CountryEntity findById(int id) {
         Optional<CountryEntity> country = countryDao.findById(id);
+        country = countryDao.findById(id);
+        CountryEntity entity = country.get();
+        entity.setName("new Name");
+        //countryDao.save(country);
         //return country.isPresent() ? country.get() : null;
         //return country.orElseThrow(throw new IllegalArgumentException("country not found by id"));
         return country.orElse(new CountryEntity());
