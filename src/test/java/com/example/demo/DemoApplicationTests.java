@@ -24,7 +24,7 @@ public class DemoApplicationTests {
 	@Autowired
 	private CountryService countryService;
 
-	@Test
+	@Test//example for Optional
 	public void testOptional() {
 		Optional<StreetEntity> streetEntity = Optional.empty();
 		if (streetEntity.isPresent()) {

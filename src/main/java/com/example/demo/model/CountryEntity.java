@@ -5,7 +5,9 @@ import com.example.demo.model.enumeration.Currency;
 import com.example.demo.model.enumeration.MotherTongue;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "COUNTRIES")
@@ -34,6 +36,9 @@ public class CountryEntity extends CommonInfoEntity {
 
     @Transient
     private Date createDate;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CityEntity> cityList = new ArrayList<>();
 
     public CountryEntity() {
     }

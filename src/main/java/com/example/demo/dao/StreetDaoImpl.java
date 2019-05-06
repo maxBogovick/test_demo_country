@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import com.example.demo.model.CityEntity;
 import com.example.demo.model.StreetEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
@@ -34,7 +35,16 @@ else{entityManager.merge(street);
     }
 
     @Override
-    public Optional<StreetEntity> findById(int id) {
+    public void delete(final StreetEntity entity) {
+     if(Objects.isNull(entity)) throw new IllegalArgumentException("entity must be set");
+     else{
+         entityManager.remove(entity);
+     }
+    }
+
+
+    @Override
+    public Optional<StreetEntity> findById(Integer id) {
         final StreetEntity streetEntity=
                 entityManager.find(StreetEntity.class,id);
 if(Objects.isNull(streetEntity)) throw new RuntimeException("street not found");

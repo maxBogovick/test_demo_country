@@ -20,7 +20,9 @@ public class DemoApplicationTest3 {
       streetEntity.setHouse(20);
       streetEntity.setId(7);
       streetEntity.setCityId(2);
-
+      streetService.createOrUpdate(streetEntity);
+    System.out.println("STREET WAS FOUND: "+streetService.findById(9));
+   // streetService.delete(streetEntity);
   }
 
 

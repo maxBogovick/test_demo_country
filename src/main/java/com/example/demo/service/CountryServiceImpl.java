@@ -32,12 +32,17 @@ public class CountryServiceImpl implements CountryService{
     public CountryEntity findById(int id) {
         Optional<CountryEntity> country = countryDao.findById(id);
         country = countryDao.findById(id);
-        CountryEntity entity = country.get();
+      CountryEntity entity = country.get();
         entity.setName("new Name");
         //countryDao.save(country);
         //return country.isPresent() ? country.get() : null;
         //return country.orElseThrow(throw new IllegalArgumentException("country not found by id"));
         return country.orElse(new CountryEntity());
+    }
+
+    @Override
+    public void remove(CountryEntity countryEntity) {
+        countryDao.delete(countryEntity);
     }
 
 

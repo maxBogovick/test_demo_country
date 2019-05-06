@@ -9,4 +9,5 @@ public interface CityService {
     void createOrUpdate (CityEntity cityEntity);
     Collection<CityEntity> findAll();
     CityEntity findById(int id);
+    void remove (CityEntity cityEntity);
 }

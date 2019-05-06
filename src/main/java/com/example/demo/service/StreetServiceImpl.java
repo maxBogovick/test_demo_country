@@ -32,4 +32,9 @@ private StreetDao streetDao;
         Optional<StreetEntity> street =streetDao.findById(id);
         return street.orElse(new StreetEntity());
     }
+
+    @Override
+    public void delete(StreetEntity streetEntity) {
+        streetDao.delete(streetEntity);
+    }
 }
