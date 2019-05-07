@@ -24,17 +24,18 @@ public class DemoApplicationTests2 {
     @Test
     public void contextLoads() {
         final CityEntity cityEntity = new CityEntity();
-        cityEntity.setName("Venice");
-        cityEntity.setSquare(253.25);
-        cityEntity.setType(CityType.city);
-       Calendar calendar = new GregorianCalendar(513, 2 , 25);
-        Date date = calendar.getTime();
-        cityEntity.setFoundationDate(date);
-        cityEntity.setDescription("marvelous city2");
-        cityEntity.setCapital(0);
-        //countryService.createOrUpdate(countryEntity);//
-        cityService.createOrUpdate(cityEntity);
-     //   System.out.println();
+//        cityEntity.setSquare(93.25);
+//        cityEntity.setType(CityType.city);
+//       Calendar calendar = new GregorianCalendar(251, 3 , 16);
+//        Date date = calendar.getTime();
+//        cityEntity.setFoundationDate(date);
+//        cityEntity.setDescription("beautiful and magnificent");
+//        cityEntity.setCapital(1);
+//        cityEntity.setPopulation(365);
+//        cityService.createOrUpdate(cityEntity);
+
+//        System.out.println("THE CITY WAS FOUND: "+cityService.findById(9));
+//     System.out.println("ALL CITIES:"+cityService.findAll());
     }
 
 }

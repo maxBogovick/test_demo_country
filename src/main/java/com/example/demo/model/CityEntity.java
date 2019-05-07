@@ -34,6 +34,10 @@ public class CityEntity extends CommonInfoEntity{
     @Transient
     private Date createDate;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COUNTRY_NAME")
+    private Country country;
+
     public CityEntity() {
     }
 
@@ -91,5 +95,18 @@ public class CityEntity extends CommonInfoEntity{
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    @Override
+    public String toString() {
+        return "CityEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ", foundationDate=" + foundationDate +
+                ", square=" + square +
+                ", capital=" + capital +
+                ", createDate=" + createDate +
+                '}';
     }
 }

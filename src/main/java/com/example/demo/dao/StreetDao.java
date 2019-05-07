@@ -6,12 +6,5 @@ import com.example.demo.model.StreetEntity;
 import java.util.Collection;
 import java.util.Optional;
 
-public interface StreetDao {
-
-    void save(StreetEntity street);
-
-    Collection<StreetEntity> findAll();
-
-    Optional<StreetEntity> findById(int id);
-
+public interface StreetDao extends GenericDao<StreetEntity, Integer>{
 }

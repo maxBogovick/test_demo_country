@@ -9,4 +9,5 @@ public interface StreetService {
     void createOrUpdate(StreetEntity streetEntity);
     Collection<StreetEntity> findAll();
     StreetEntity findById(int id);
+    void delete (StreetEntity streetEntity);
 }

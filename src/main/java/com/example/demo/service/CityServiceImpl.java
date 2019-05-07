@@ -32,4 +32,9 @@ public class CityServiceImpl implements CityService {
         Optional<CityEntity> city = cityDao.findById(id);
         return city.orElse(new CityEntity());
     }
+
+    @Override
+    public void  remove( CityEntity cityEntity) {
+        cityDao.delete(cityEntity);
+    }
 }

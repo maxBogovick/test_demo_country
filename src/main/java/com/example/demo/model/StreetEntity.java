@@ -55,4 +55,14 @@ public class StreetEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "StreetEntity{" +
+                "id=" + id +
+                ", house=" + house +
+                ", cityId=" + cityId +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
