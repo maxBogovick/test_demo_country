@@ -8,5 +8,5 @@ public interface CountryService {
     void createOrUpdate(CountryEntity countryEntity);
     Collection<CountryEntity> findAll();
     CountryEntity findById(int id);
-    void remove(CountryEntity countryEntity);
+    void remove(int countryEntity);
 }

@@ -18,7 +18,7 @@ public class CountryEntity extends CommonInfoEntity {
     @SequenceGenerator(name = "seq_country", sequenceName = "seq_country", allocationSize = 1)
     private Integer id;
 
-    @Column(name = "COUNTRY_NAME", nullable = true, insertable = true, updatable = true)
+    @Column(name = "COUNTRY_NAME", nullable = false, insertable = true, updatable = true)
     private String name;
 
 
@@ -26,19 +26,22 @@ public class CountryEntity extends CommonInfoEntity {
     @Column(name = "MOTHER_TONGUE")
     private MotherTongue motherTongue;
 
-    @Column(name = "CURRENCY")
+    @Column(name = "CURRENCY", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Currency currency;
 
     @Column(name = "SQUARE")
     private double square;
+    @Column(name="CITY", nullable =false)
+    private String city;
 
 
 
     @Transient
     private Date createDate;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CityEntity> cityList = new ArrayList<>();
+    /*@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CityEntity> cityList = new ArrayList<>();*/
 
     public CountryEntity() {
     }
