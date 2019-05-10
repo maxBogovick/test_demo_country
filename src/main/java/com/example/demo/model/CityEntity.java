@@ -17,10 +17,10 @@ public class CityEntity extends CommonInfoEntity{
     private String name;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "CITY_TYPE")
+    @Column(name = "CITY_TYPE", nullable = false)
     private CityType type;
 
-    @Column(name = "FOUNDATION_DATE")
+    @Column(name = "FOUNDATION_DATE", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date foundationDate;
 
@@ -34,9 +34,9 @@ public class CityEntity extends CommonInfoEntity{
     @Transient
     private Date createDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "COUNTRY_NAME")
-    private Country country;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "COUNTRY_ID")
+    private CountryEntity country;
 
     public CityEntity() {
     }
@@ -95,6 +95,14 @@ public class CityEntity extends CommonInfoEntity{
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public CountryEntity getCountry() {
+        return country;
+    }
+
+    public void setCountry(CountryEntity country) {
+        this.country = country;
     }
 
     @Override

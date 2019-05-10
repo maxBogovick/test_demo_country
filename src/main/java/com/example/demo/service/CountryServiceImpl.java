@@ -41,7 +41,9 @@ public class CountryServiceImpl implements CountryService{
     }
 
     @Override
-    public void remove(CountryEntity countryEntity) {
+    @Transactional
+    public void remove(int id) {
+        CountryEntity countryEntity = findById(id);
         countryDao.delete(countryEntity);
     }
 

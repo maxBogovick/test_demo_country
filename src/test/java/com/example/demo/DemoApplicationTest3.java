@@ -16,13 +16,16 @@ public class DemoApplicationTest3 {
   @Test
     public void contextLoads(){
       final StreetEntity streetEntity= new StreetEntity();
-      streetEntity.setName("Oxford");
-      streetEntity.setHouse(20);
-      streetEntity.setId(7);
-      streetEntity.setCityId(2);
-      streetService.createOrUpdate(streetEntity);
-    System.out.println("STREET WAS FOUND: "+streetService.findById(9));
-   // streetService.delete(streetEntity);
+//      streetEntity.setName("Oxford");
+//      streetEntity.setHouse(20);
+//      streetEntity.setId(7);
+//      streetEntity.setCityId(2);
+//      streetService.createOrUpdate(streetEntity);
+//    System.out.println("STREET WAS FOUND: "+streetService.findById(9));
+   streetService.remove(15);
+    streetService.remove(17);
+
+
   }
 
 

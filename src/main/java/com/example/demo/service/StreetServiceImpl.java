@@ -34,7 +34,10 @@ private StreetDao streetDao;
     }
 
     @Override
-    public void delete(StreetEntity streetEntity) {
+    @Transactional
+    public void remove (int id)
+    {
+        StreetEntity streetEntity =findById(id);
         streetDao.delete(streetEntity);
     }
 }

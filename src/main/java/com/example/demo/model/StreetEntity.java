@@ -11,14 +11,14 @@ public class StreetEntity {
     @SequenceGenerator(name = "seq_street", sequenceName = "seq_street", allocationSize = 1)
     private Integer id;
     
-    @Column(name = "HOUSE")
+    @Column(name = "HOUSE", nullable = false)
     private Integer house;
 
     @Column(name = "CITY_ID")
     private int cityId;
 
-    //@Enumerated(EnumType.STRING)
-    @Column(name = "STREET_NAME")
+
+    @Column(name = "STREET_NAME", nullable = false)
     private String name;
 
     public StreetEntity() {

@@ -31,7 +31,9 @@ public class CountryDaoImpl implements CountryDao {
     public Collection<CountryEntity> findAll() {
         //HQL
         Collection<CountryEntity> countryEntities = entityManager.
-                createQuery("select c from CountryEntity c").getResultList();
+            createQuery("select c from CountryEntity c").getResultList();
+
+        //Collection<CountryEntity> countryEntities = entityManager.createNativeQuery("SELECT * FROM COUNTRIES").getResultList();
         /*if (CollectionUtils.isEmpty(countryEntities)) return Collections.emptyList();
         return countryEntities;*/
         return CollectionUtils.isEmpty(countryEntities) ? Collections.emptyList() : countryEntities;
