@@ -21,6 +21,10 @@ public class StreetEntity {
     @Column(name = "STREET_NAME", nullable = false)
     private String name;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CITY_ID")
+    private CityEntity city;
+
     public StreetEntity() {
     }
 
