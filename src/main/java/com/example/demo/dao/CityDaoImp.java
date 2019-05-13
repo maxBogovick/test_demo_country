@@ -49,8 +49,8 @@ public class CityDaoImp implements CityDao{
 //                        "CITY_TYPE as CITY_TYPE,"+
 //                        "FOUNDATION_DATE as FOUNDATION_DATE,"+
 //                        "SQUARE as SQUARE,"+
-//                        "CAPITAL as CAPITAL"+
-//                        "POPULATION, DESCRIPTION"+
+//                        "CAPITAL as CAPITAL, "+
+//                        "POPULATION, DESCRIPTION "+
 //                        "FROM CITY",
 //                        CityEntity.class).getResultList();
         //HQL
