@@ -32,6 +32,7 @@ public class CountryEntity extends CommonInfoEntity {
 
     @Column(name = "SQUARE")
     private double square;
+
     @Column(name="CITY", nullable =false)
     private String city;
 

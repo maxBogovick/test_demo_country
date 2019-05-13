@@ -1,17 +1,19 @@
 package com.example.demo.dao;
 
 import com.example.demo.model.CountryEntity;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Objects;
-import java.util.Optional;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.*;
 
 @Repository
+@Qualifier("countryDao")// bean
 public class CountryDaoImpl implements CountryDao {
 
     @PersistenceContext
@@ -30,13 +32,35 @@ public class CountryDaoImpl implements CountryDao {
     @Override
     public Collection<CountryEntity> findAll() {
         //HQL
-        Collection<CountryEntity> countryEntities = entityManager.
-            createQuery("select c from CountryEntity c").getResultList();
+        /*Collection<CountryEntity> countryEntities = entityManager.
+            createQuery("select c from CountryEntity c").getResultList();*/
 
-        //Collection<CountryEntity> countryEntities = entityManager.createNativeQuery("SELECT * FROM COUNTRIES").getResultList();
+//        Collection<CountryEntity> countryEntities = entityManager
+//                .createNativeQuery("SELECT ID as ID," +
+//                                " COUNTRY_NAME as COUNTRY_NAME," +
+//                                " MOTHER_TONGUE as MOTHER_TONGUE," +
+//                                " currency as CURRENCY," +
+//                                " SQUARE as SQUARE," +
+//                                " CITY as CITY," +
+//                                " POPULATION, DESCRIPTION "+
+//                                " FROM COUNTRIES",
+//
+//                        CountryEntity.class).getResultList();
+
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<CountryEntity> query = cb.createQuery(CountryEntity.class);
+        Root<CountryEntity> root = query.from(CountryEntity.class);
+        query.select(root);
+
+        List<CountryEntity> countryList = entityManager.createQuery(query).getResultList();
+        for (CountryEntity country : countryList) {
+            System.out.println(country.getName());
+
         /*if (CollectionUtils.isEmpty(countryEntities)) return Collections.emptyList();
         return countryEntities;*/
-        return CollectionUtils.isEmpty(countryEntities) ? Collections.emptyList() : countryEntities;
+
+        }
+        return countryList.size() == 0 ? Collections.emptyList() : countryList;
     }
 
     @Override

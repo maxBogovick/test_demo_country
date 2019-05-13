@@ -34,7 +34,7 @@ public class CityEntity extends CommonInfoEntity{
     @Transient
     private Date createDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "COUNTRY_ID")
     private CountryEntity country;
 

@@ -14,7 +14,7 @@ public class StreetEntity {
     @Column(name = "HOUSE", nullable = false)
     private Integer house;
 
-    @Column(name = "CITY_ID")
+    @Column(name = "CITY_ID", updatable = false, insertable = false)
     private int cityId;
 
 

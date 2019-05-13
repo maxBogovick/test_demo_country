@@ -1,6 +1,7 @@
 import com.sun.istack.internal.NotNull;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.Objects;
 
 public class ClassAParent implements Parent{
@@ -15,7 +16,9 @@ public class ClassAParent implements Parent{
         this.data = value;
     }
 
-    public Integer casting(ClassBChild s) {
+    public Integer casting(ClassBChild s) throws RuntimeException
+
+    {
         return 123;
     }
 
