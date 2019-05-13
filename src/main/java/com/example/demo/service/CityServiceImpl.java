@@ -1,18 +1,25 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.CityDao;
+import com.example.demo.dao.GenericDao;
 import com.example.demo.model.CityEntity;
+import com.example.demo.model.CountryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CityServiceImpl implements CityService {
     @Autowired
-    private CityDao cityDao;
+    @Qualifier("cityDao")
+    private GenericDao cityDao;
 
     @Override
     @Transactional
@@ -24,7 +31,24 @@ public class CityServiceImpl implements CityService {
     @Override
     @Transactional()
     public Collection<CityEntity> findAll() {
-        return cityDao.findAll();
+
+
+        Collection<CityEntity> cities=cityDao.findAll();
+//        for(CityEntity item:cities){
+//            item.getCountry();
+//        }
+        //cityDao.findAll().stream().forEach(CityEntity::getCountry);
+        //cityDao.findAll().stream().forEach(item->item.getCountry());
+
+
+     List<CityEntity> list= cities.stream().peek(item -> {
+            if (Objects.nonNull(item.getCountry())) {
+               item.getCountry().getName();
+            }
+        }).collect(Collectors.toList());
+        System.out.println(list);
+
+        return cities;
     }
 
     @Override
@@ -37,8 +61,8 @@ public class CityServiceImpl implements CityService {
 
     @Override
     @Transactional
-    public void  remove( int id) {
-        final CityEntity cityEntity = cityDao.findById(id).get();
+    public void remove(int id) {
+        final CityEntity cityEntity = (CityEntity) cityDao.findById(id).get();
         cityDao.delete(cityEntity);
     }
 }

@@ -14,12 +14,16 @@ public class StreetEntity {
     @Column(name = "HOUSE", nullable = false)
     private Integer house;
 
-    @Column(name = "CITY_ID")
+    @Column(name = "CITY_ID", updatable = false, insertable = false)
     private int cityId;
 
 
     @Column(name = "STREET_NAME", nullable = false)
     private String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CITY_ID")
+    private CityEntity city;
 
     public StreetEntity() {
     }

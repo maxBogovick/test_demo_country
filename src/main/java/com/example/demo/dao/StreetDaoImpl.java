@@ -29,8 +29,14 @@ else{entityManager.merge(street);
     @Override
     public Collection<StreetEntity> findAll() {
         Collection<StreetEntity> streetEntities=
-                entityManager.createQuery(("select c from StreetEntity c"))
-                        .getResultList();
+//                entityManager.createQuery(("select c from StreetEntity c"))
+//                        .getResultList();
+        entityManager.createNativeQuery(" SELECT ID as ID,"+
+                "HOUSE as HOUSE,"+
+                "CITY_ID as CITY_ID,"+
+                "STREET_NAME as STREET_NAME"+
+                "FROM STREET",
+                StreetEntity.class).getResultList();
        return CollectionUtils.isEmpty(streetEntities)? Collections.emptyList():streetEntities;
     }
 

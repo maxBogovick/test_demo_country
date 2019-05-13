@@ -1,8 +1,10 @@
 package com.example.demo.service;
 
 import com.example.demo.dao.CountryDao;
+import com.example.demo.dao.GenericDao;
 import com.example.demo.model.CountryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +15,12 @@ import java.util.Optional;
 public class CountryServiceImpl implements CountryService{
 
     @Autowired
-    private CountryDao countryDao;
+    @Qualifier("countryDao")
+    private GenericDao<CountryEntity, Integer> countryDao;
+    //the same - polim
+    /*@Autowired
+    private CountryDao countryDao;*/
+
 
     @Override
     @Transactional
@@ -24,6 +31,7 @@ public class CountryServiceImpl implements CountryService{
     @Override
     @Transactional(readOnly = true)
     public Collection<CountryEntity> findAll() {
+
         return countryDao.findAll();
     }
 

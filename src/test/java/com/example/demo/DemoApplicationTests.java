@@ -17,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
@@ -76,6 +77,16 @@ public class DemoApplicationTests {
 		cityService.createOrUpdate(city);
 		//select * from city
 		System.out.println("select ...");*/
+//		Collection<CityEntity> cities = cityService.findAll();
+//		cities.stream()
+//				.filter(item-> Objects.nonNull(item.getCountry()))
+//				.forEach((item)-> System.out.println(item.getCountry()));
+
+		//System.out.println(cityService.findAll());
+		CountryEntity countryEntity = new CountryEntity();
+		countryService.findAll();
+
+
 
 
 

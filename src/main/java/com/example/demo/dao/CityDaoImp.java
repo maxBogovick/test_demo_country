@@ -3,6 +3,7 @@ package com.example.demo.dao;
 import com.example.demo.model.CityEntity;
 import com.example.demo.model.CountryEntity;
 import org.hibernate.Criteria;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 
@@ -14,6 +15,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Repository
+@Qualifier("cityDao")
 public class CityDaoImp implements CityDao{
 
     @PersistenceContext
@@ -39,17 +41,29 @@ public class CityDaoImp implements CityDao{
 
     @Override
     public Collection<CityEntity> findAll() {
-        //HQL
+
         Collection<CityEntity> cityEntities =
+//                entityManager.createNativeQuery("SELECT ID as ID,"+
+//                        "COUNTRY_ID as COUNTRY_ID,"+
+//                        "NAME as NAME,"+
+//                        "CITY_TYPE as CITY_TYPE,"+
+//                        "FOUNDATION_DATE as FOUNDATION_DATE,"+
+//                        "SQUARE as SQUARE,"+
+//                        "CAPITAL as CAPITAL"+
+//                        "POPULATION, DESCRIPTION"+
+//                        "FROM CITY",
+//                        CityEntity.class).getResultList();
+        //HQL
                 entityManager.createQuery("select c from CityEntity c").getResultList();
-        return CollectionUtils.isEmpty(cityEntities)? Collections.emptyList():cityEntities;
+
+        return CollectionUtils.isEmpty(cityEntities) ? Collections.emptyList() : cityEntities;
     }
 
     @Override
     public Optional<CityEntity> findById(Integer id) {
         final CityEntity cityEntity=
                 entityManager.find(CityEntity.class,id);
-        if(Objects.isNull(cityEntity)) throw  new RuntimeException("city not found");
+        if(Objects.isNull(cityEntity)) throw  new RuntimeException("city.not.found");
         return Optional.ofNullable(cityEntity);
     }
 
