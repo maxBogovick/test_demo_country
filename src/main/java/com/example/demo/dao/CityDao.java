@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface CityDao extends GenericDao<CityEntity, Integer> {
 
+    Collection<CityEntity> findCitiesWithCountry();
 }

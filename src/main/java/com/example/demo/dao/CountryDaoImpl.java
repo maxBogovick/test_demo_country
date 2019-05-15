@@ -54,7 +54,7 @@ public class CountryDaoImpl implements CountryDao {
 
         List<CountryEntity> countryList = entityManager.createQuery(query).getResultList();
         for (CountryEntity country : countryList) {
-            System.out.println(country.getName());
+            System.out.println(country.getCities());
 
         /*if (CollectionUtils.isEmpty(countryEntities)) return Collections.emptyList();
         return countryEntities;*/

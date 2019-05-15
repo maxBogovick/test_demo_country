@@ -115,6 +115,7 @@ public class CityEntity extends CommonInfoEntity{
                 ", square=" + square +
                 ", capital=" + capital +
                 ", createDate=" + createDate +
+                //", country=" + country +
                 '}';
     }
 }
