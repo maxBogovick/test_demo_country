@@ -48,6 +48,8 @@ public class DemoApplicationTest3 {
     System.out.println(streetRepository.existsById(1));
    // System.out.println(streetRepository.equals());???
 streetRepository.deleteById(1);  //Do NOT WOKR:(
+    System.out.println(streetRepository.findByHouse(20));
+
 
   }
 }
