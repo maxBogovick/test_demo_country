@@ -43,21 +43,41 @@ public class CityDaoImp implements CityDao{
     public Collection<CityEntity> findAll() {
 
         Collection<CityEntity> cityEntities =
-//                entityManager.createNativeQuery("SELECT ID as ID,"+
-//                        "COUNTRY_ID as COUNTRY_ID,"+
-//                        "NAME as NAME,"+
-//                        "CITY_TYPE as CITY_TYPE,"+
-//                        "FOUNDATION_DATE as FOUNDATION_DATE,"+
-//                        "SQUARE as SQUARE,"+
-//                        "CAPITAL as CAPITAL, "+
-//                        "POPULATION, DESCRIPTION "+
-//                        "FROM CITY",
-//                        CityEntity.class).getResultList();
+                entityManager.createNativeQuery("SELECT ID as ID,"+
+                        "COUNTRY_ID as COUNTRY_ID,"+
+                        "NAME as NAME,"+
+                        "CITY_TYPE as CITY_TYPE,"+
+                        "FOUNDATION_DATE as FOUNDATION_DATE,"+
+                        "SQUARE as SQUARE,"+
+                        "CAPITAL as CAPITAL,"+
+                        "POPULATION, DESCRIPTION "+
+                        "FROM CITY",
+                        CityEntity.class).getResultList();
         //HQL
                 entityManager.createQuery("select c from CityEntity c").getResultList();
 
         return CollectionUtils.isEmpty(cityEntities) ? Collections.emptyList() : cityEntities;
-    }
+}
+
+    @Override
+    public Collection<CityEntity> findCitiesWithCountry() {
+
+
+        Collection<CityEntity> cityEntities =
+                entityManager.createNativeQuery("SELECT ID as ID,"+
+                        "COUNTRY_ID as COUNTRY_ID,"+
+                        "NAME as NAME,"+
+                        "CITY_TYPE as CITY_TYPE,"+
+                        "FOUNDATION_DATE as FOUNDATION_DATE,"+
+                        "SQUARE as SQUARE,"+
+                        "CAPITAL as CAPITAL,"+
+                        "POPULATION, DESCRIPTION "+
+                        "FROM CITY where country_id is not null",
+                        CityEntity.class).getResultList();
+
+
+        return CollectionUtils.isEmpty(cityEntities) ? Collections.emptyList() : cityEntities;
+}
 
     @Override
     public Optional<CityEntity> findById(Integer id) {

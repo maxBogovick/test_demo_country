@@ -34,7 +34,7 @@ else{entityManager.merge(street);
         entityManager.createNativeQuery(" SELECT ID as ID,"+
                 "HOUSE as HOUSE,"+
                 "CITY_ID as CITY_ID,"+
-                "STREET_NAME as STREET_NAME"+
+                "STREET_NAME as STREET_NAME "+
                 "FROM STREET",
                 StreetEntity.class).getResultList();
        return CollectionUtils.isEmpty(streetEntities)? Collections.emptyList():streetEntities;

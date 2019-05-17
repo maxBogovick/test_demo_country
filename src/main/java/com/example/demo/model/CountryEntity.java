@@ -41,8 +41,8 @@ public class CountryEntity extends CommonInfoEntity {
     @Transient
     private Date createDate;
 
-    /*@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CityEntity> cityList = new ArrayList<>();*/
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CityEntity> cities = new ArrayList<>();
 
     public CountryEntity() {
     }
@@ -93,6 +93,14 @@ public class CountryEntity extends CommonInfoEntity {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public List<CityEntity> getCities() {
+        return cities;
+    }
+
+    public void setCities(List<CityEntity> cities) {
+        this.cities = cities;
     }
 
     @Override

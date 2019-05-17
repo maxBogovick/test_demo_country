@@ -4,6 +4,7 @@ import com.example.demo.dao.CityDao;
 import com.example.demo.dao.GenericDao;
 import com.example.demo.model.CityEntity;
 import com.example.demo.model.CountryEntity;
+import com.example.demo.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class CityServiceImpl implements CityService {
-    @Autowired
+    /*@Autowired
     @Qualifier("cityDao")
-    private GenericDao cityDao;
+    private CityDao cityDao;*/
+
+// the same as 21-23
+    @Autowired
+    private CityRepository cityDao;
 
     @Override
     @Transactional
@@ -33,20 +38,26 @@ public class CityServiceImpl implements CityService {
     public Collection<CityEntity> findAll() {
 
 
-        Collection<CityEntity> cities=cityDao.findAll();
-//        for(CityEntity item:cities){
+        Collection<CityEntity> cities = cityDao.findAll();
+        //     for(CityEntity item:cities){
 //            item.getCountry();
 //        }
         //cityDao.findAll().stream().forEach(CityEntity::getCountry);
         //cityDao.findAll().stream().forEach(item->item.getCountry());
+        return cities;
 
+    }
 
-     List<CityEntity> list= cities.stream().peek(item -> {
-            if (Objects.nonNull(item.getCountry())) {
-               item.getCountry().getName();
-            }
-        }).collect(Collectors.toList());
-        System.out.println(list);
+    @Override
+    @Transactional
+    public Collection<CityEntity> findCitiesWithCountry() {
+        Collection<CityEntity> cities = cityDao.findCitiesWithCountry();
+                //cityDao.findCitiesWithCountry();
+        cities.forEach(item->item.getCountry().getName());
+        /*List<CityEntity> list = cities.stream()
+                .filter(item ->
+                        Objects.nonNull(item.getCountry()) && Objects.nonNull(item.getCountry().getName()))
+                .collect(Collectors.toList());*/
 
         return cities;
     }

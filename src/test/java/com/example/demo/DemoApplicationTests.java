@@ -10,6 +10,7 @@ import com.example.demo.model.enumeration.Currency;
 import com.example.demo.model.enumeration.MotherTongue;
 import com.example.demo.service.CityService;
 import com.example.demo.service.CountryService;
+import com.example.demo.service.StreetService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,24 +83,22 @@ public class DemoApplicationTests {
 //				.filter(item-> Objects.nonNull(item.getCountry()))
 //				.forEach((item)-> System.out.println(item.getCountry()));
 
-		//System.out.println(cityService.findAll());
-		CountryEntity countryEntity = new CountryEntity();
-		countryService.findAll();
 
+		//CountryEntity countryEntity = new CountryEntity();
+		//countryService.findAll();
 
-
-
-
-
-
-
+		cityService.findCitiesWithCountry().forEach(item->{
+			System.out.println("City: " + item);
+			System.out.println("Country: " + item.getCountry());
+		});
 
 	}
 
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
