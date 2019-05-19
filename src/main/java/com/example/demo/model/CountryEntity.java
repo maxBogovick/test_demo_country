@@ -36,7 +36,13 @@ public class CountryEntity extends CommonInfoEntity {
     @Column(name="CITY", nullable =false)
     private String city;
 
+    public String getCity() {
+        return city;
+    }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     @Transient
     private Date createDate;
