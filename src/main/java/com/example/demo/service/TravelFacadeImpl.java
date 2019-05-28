@@ -9,51 +9,34 @@ import com.example.demo.model.StreetEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TravelFacadeImpl implements TravelFacade {
     @Autowired
-    @Qualifier("countryDao")
-    private GenericDao<CountryEntity, Integer> countryDao;
+    private StreetService streetService;
     @Autowired
-    @Qualifier("cityDao")
-    private CityDao cityDao;
-
+    private CountryService countryService;
     @Autowired
-    @Qualifier("streetDao")
-    private StreetDao streetDao;
-
+    private CityService cityService;
 
     @Override
+    @Transactional
     public void createFullInfo(CountryEntity country, CityEntity city, StreetEntity street) {
+        countryService.createOrUpdate(country);
+        cityService.createOrUpdate(city);
+        street.setCity(city);
+        //streetService.createOrUpdate(street);
+
 
     }
-
-    @Override
-    public void save(CityEntity city) {
-    cityDao.save(city);
-    }
-
-    @Override
-    public void save(CountryEntity country) {
-    countryDao.save(country);
-    }
-
-    @Override
-    public void save(StreetEntity street) {
-    streetDao.save(street);
-    }
-
-
 }
 
 
-    // @Override
-  //  public void createFullInfo(CountryEntity country, CityEntity city, StreetEntity street) {
-        //cityService.createOrUpdate(city);
-        //save country
-        //save street
-        //save city
+
+
+
+
 
 
 

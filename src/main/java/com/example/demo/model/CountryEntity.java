@@ -47,7 +47,7 @@ public class CountryEntity extends CommonInfoEntity {
     @Transient
     private Date createDate;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true, mappedBy = "country")
     private List<CityEntity> cities = new ArrayList<>();
 
     public CountryEntity() {

@@ -21,9 +21,17 @@ public class StreetEntity {
     @Column(name = "STREET_NAME", nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "CITY_ID")
     private CityEntity city;
+
+    public CityEntity getCity() {
+        return city;
+    }
+
+    public void setCity(CityEntity city) {
+        this.city = city;
+    }
 
     public StreetEntity() {
     }
