@@ -36,12 +36,18 @@ public class CountryEntity extends CommonInfoEntity {
     @Column(name="CITY", nullable =false)
     private String city;
 
+    public String getCity() {
+        return city;
+    }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     @Transient
     private Date createDate;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true, mappedBy = "country")
     private List<CityEntity> cities = new ArrayList<>();
 
     public CountryEntity() {

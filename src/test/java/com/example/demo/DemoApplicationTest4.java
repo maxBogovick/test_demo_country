@@ -6,20 +6,24 @@ import com.example.demo.model.StreetEntity;
 import com.example.demo.model.enumeration.CityType;
 import com.example.demo.model.enumeration.Currency;
 import com.example.demo.model.enumeration.MotherTongue;
-import com.example.demo.repository.StreetRepository;
-import com.example.demo.service.*;
+import com.example.demo.repository.CountryRepository;
+import com.example.demo.service.CityService;
+import com.example.demo.service.CountryService;
+import com.example.demo.service.StreetService;
+import com.example.demo.service.TravelFacade;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DemoApplicationTest3 {
+public class DemoApplicationTest4 {
   @Autowired
   private StreetService streetService;
 
@@ -31,6 +35,9 @@ public class DemoApplicationTest3 {
 
   @Autowired
   private CityService cityService;
+
+  @Autowired
+  private CountryRepository countryRepository;
 
   @Test
   public void contextLoads() {
@@ -70,15 +77,15 @@ streetRepository.deleteById(1);  //Do NOT WOKR:(
 
     CountryEntity countryEntity  = new CountryEntity();
     CityEntity cityEntity= new CityEntity();
-    /*StreetEntity streetEntity = new StreetEntity();
+    StreetEntity streetEntity = new StreetEntity();
 
     //streetEntity.setCityId(9);
     //streetEntity.setId(8);
     streetEntity.setName("Central_street");
-    streetEntity.setHouse(55);*/
+    streetEntity.setHouse(55);
 
 
-    countryEntity.setName("Japan13");
+    countryEntity.setName("Japan5");
     //countryEntity.setId(10);
     countryEntity.setMotherTongue(MotherTongue.ENGLISH);
     countryEntity.setCurrency(Currency.USD);
@@ -87,17 +94,34 @@ streetRepository.deleteById(1);  //Do NOT WOKR:(
     countryEntity.setDescription("Greece is located at the crossroads of Europe, Asia, and Africa.");
     countryEntity.setCity("Athens");
 
-    cityEntity.setName("Tokyo13");
+    cityEntity.setName("Tokyo118");
     cityEntity.setType(CityType.metropolis);
     cityEntity.setSquare(25.6);
     Calendar calendar = new GregorianCalendar(158, 4 , 16);
     Date date = calendar.getTime();
     cityEntity.setFoundationDate(date);
-   cityEntity.setCountry(countryEntity);
+    cityEntity.setCountry(countryEntity);
     countryEntity.getCities().add(cityEntity);
-   //cityService.createOrUpdate(cityEntity);
-    countryService.createOrUpdate(countryEntity);
-    //travel.createFullInfo(countryEntity,cityEntity,streetEntity);
 
+    streetEntity.setCity(cityEntity);
+    cityEntity.getStreets().add(streetEntity);
+
+    //streetEntity.setCity(cityEntity);
+    //cityService.createOrUpdate(cityEntity);
+    //countryService.createOrUpdate(countryEntity);
+
+    travel.createFullInfo(countryEntity,cityEntity,streetEntity);
+
+    streetService.createOrUpdate(streetEntity);
+
+    countryService.remove(countryEntity.getId());
+
+    /*System.out.println("country id = " + countryService.findById(countryEntity.getId()));
+    System.out.println("street id = " + streetService.findById(streetEntity.getId()));
+
+    System.out.println("city id = " + cityService.findById(cityEntity.getId()));
+
+    System.out.println(countryService.findById(countryEntity.getId()));
+    System.out.println(countryRepository.findAllByCountryPopulation());*/
   }
 }

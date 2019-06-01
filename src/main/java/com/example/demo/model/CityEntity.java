@@ -3,7 +3,9 @@ package com.example.demo.model;
 import com.example.demo.model.enumeration.CityType;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "CITY")
@@ -34,9 +36,13 @@ public class CityEntity extends CommonInfoEntity{
     @Transient
     private Date createDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "COUNTRY_ID")
     private CountryEntity country;
+
+    @OneToMany(mappedBy = "city", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private List<StreetEntity> streets = new ArrayList<StreetEntity>();
+
 
     public CityEntity() {
     }
@@ -103,6 +109,14 @@ public class CityEntity extends CommonInfoEntity{
 
     public void setCountry(CountryEntity country) {
         this.country = country;
+    }
+
+    public List<StreetEntity> getStreets() {
+        return streets;
+    }
+
+    public void setStreets(List<StreetEntity> streets) {
+        this.streets = streets;
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.example.demo.model.CountryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
@@ -23,7 +24,7 @@ public class CountryServiceImpl implements CountryService{
 
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void createOrUpdate(CountryEntity countryEntity) {
         countryDao.save(countryEntity);
     }

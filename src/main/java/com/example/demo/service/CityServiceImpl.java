@@ -8,6 +8,7 @@ import com.example.demo.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
@@ -27,7 +28,7 @@ public class CityServiceImpl implements CityService {
     private CityRepository cityDao;
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void createOrUpdate(CityEntity cityEntity) {
         cityDao.save(cityEntity);
 
@@ -74,6 +75,7 @@ public class CityServiceImpl implements CityService {
     @Transactional
     public void remove(int id) {
         final CityEntity cityEntity = (CityEntity) cityDao.findById(id).get();
+        cityEntity.setCountry(null);
         cityDao.delete(cityEntity);
     }
 }
